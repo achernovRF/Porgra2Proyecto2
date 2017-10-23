@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="es">
+<meta charset="utf-8">
 	<title>Inicio de Sesión</title>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>

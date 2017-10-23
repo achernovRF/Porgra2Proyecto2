@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="es">
+<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css\estilo.css">
 	<title>Crear cuenta</title>
 </head>
@@ -83,14 +83,42 @@
 			$campo9 = $_POST['contrasenya'];
 		}
 
-		if (empty($error)) {
+		if (empty($error)) 
+		{
+			
 			$conexion= mysql_connect("localhost", "root", "") or die("No te puedes conectar al host");
-
 			mysql_select_db("tuboloeto", $conexion) or die("No se puede acceder a la base de datos");
+			
+			$consultando_query = "SELECT * FROM usuario WHERE usuario='$campo8'";
+			$consulta_query= mysql_query($consultando_query);
+			$contar = mysql_num_rows($consulta_query);
+			mysql_close($conexion);
 
-			$consultando_query="SELECT * FROM usuario WHERE ";
+			if($contar == 0)
+			{
+				$conexion2 = mysql_connect("localhost", "root", "");
+				mysql_select_db("tuboloeto",$conexion2);
+				
+				$insertar_datos = "INSERT INTO usuario (nombres, apellidos, cedula, sexo, telefono, correo, direccion, usuario, contrasenya) VALUES ('$campo1','$campo2','$campo3','$campo4','$campo5','$campo6','$campo7','$campo8','$campo9')";
+				$consulta_query2= mysql_query($insertar_datos);
+				mysql_close($conexion2);
+			}
+			else
+			{
+				echo '<script>alert("El usuario ya existe")</script>';
+			}
+
+		}
+		else
+		{
+			foreach ($error as $key => $values){
+				echo '<li>'.$values.'</li>';
+			}
+		}
+
 	}	
 ?>
+
 
 <body>
 
@@ -153,6 +181,7 @@
 
 			<input type="submit" name="enviar" value="Enviar"/>
 			<button type="submit" formaction="index.php">Cancelar</button>
+
 		</div>
 
 	</div>
