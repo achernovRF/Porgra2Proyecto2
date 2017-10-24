@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css\estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<title>Registrar Evento</title>
 </head>
 
-<script type="text/javascript" src="js\file.js"></script>
+<script type="text/javascript" src="js/file.js"></script>
 
 <body>
 

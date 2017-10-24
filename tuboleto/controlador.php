@@ -1,4 +1,7 @@
 <?php
+	include "clases/usuarios.php";
+	include "clases/eventos.php";
+	include "clases/boletos.php";
 
 	class controlador
 	{

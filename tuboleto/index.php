@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inicio de Sesión</title>
+	<title>Tu boleto</title>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>
 
 <?php
 
 include "controlador.php";
+
 
 	if(isset($_POST["login"]))
 	{
@@ -19,7 +20,6 @@ include "controlador.php";
 			if(controlador::login($usuario,$clave))
 			{
 				echo '<script>alert("Conecto!!!")</script>';
-				header("Location: boleto.php ");
 			}
 			else
 			{
@@ -50,11 +50,9 @@ include "controlador.php";
 		<div class="fila">
 			<span>Contraseña: </span><input type="password" name="contrasenya" />
 		</div>
-
 		<div class="fila">
 			<input type="submit" name="login" value="Iniciar Sesión"/>
-			<!-- <input type="button" value="Registrarse" formaction="/registroUsuario.php" /> -->
-			<button type="submit" formaction="registroUsuario.php">Registrarse</button>
+			<input type="button" value="Registrarse" />
 		</div>
 
 	</div>

@@ -1,18 +1,21 @@
 
-body {
-	background-color: lightblue;
-	font-family: sans-serif;
-}
-
-#datos-login, #form-registro{
+form > div{
 	width: 400px;
 	height: auto;
-	margin: auto;
+	float: right;
+	margin-right: 50px;
 	border-radius: 15px;
 	border-style: outset;
 	border-color: darkgray;
 	border-width: 4px;
 	background: #5858fa;
+}
+
+body{
+	background: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 520px;
 }
 
 .fila{
@@ -25,4 +28,46 @@ body {
 h1{
 	text-align: center;
 }
+.menui{
+	list-style: none;
+	padding:0px;
+	margin:0px;
 
+}
+.menui li{
+	margin:2px;
+	padding:2px;
+	float:left;
+}
+.menu li a{
+	display:block;
+	width: 100px;
+	height: 20px;
+	text-decoration:none;
+	text-align: center;
+	color: #FFF;
+	background-color: #2EC0C2; 
+	background-left:10px solid #94A5A5;
+}
+.menu2{
+
+	list-style: none;
+	padding:0px;
+	margin:0px;
+}
+.menu2 li{
+	margin:2px;
+	padding:2px;
+	float:left;
+
+}
+.menu2 li a{
+	display:block;
+	width: 100px;
+	height: 20px;
+	text-decoration:none;
+	text-align: center;
+	color: #FFF;
+	background-color: #A4CECE; 
+	background-left:10px solid #3D6069;
+}
