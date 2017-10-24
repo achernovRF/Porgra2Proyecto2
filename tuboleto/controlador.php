@@ -8,20 +8,20 @@
 
 		static function get_result($query)
 		{
-			$conn = new mysqli("localhost","root","","tuboloeto");
+			$conn = new mysqli("localhost","root","","basedatos");
 			$result = $conn->query($query);
 			return $result;
 		}
 
 		static function login($usuario,$clave)
 		{
-			$query = "select count(*) cant from usuario u where u.usuario='".$usuario."' and u.contrasenya='".md5($clave)."'";
+			$query = "select count(*) cant from usuario u where u.usuario='".$usuario."' and u.contrasenya='".($clave)."'";
 			$result = controlador::get_result($query);
 			$row = $result->fetch_assoc();
 			
 			if($row['cant']>0)
 			{
-				$query = "select admin from usuario u where u.usuario='".$usuario."' and u.contrasenya='".md5($clave)."'";
+				$query = "select admin from usuario u where u.usuario='".$usuario."' and u.contrasenya='".($clave)."'";
 				$result = controlador::get_result($query);
 				$row2 = $result->fetch_assoc();
 				return $row2['admin']+0;
@@ -34,7 +34,7 @@
 
 		static function get_usuario($usuario,$clave)
 		{
-			$query = "select nombres, apellidos, cedula, sexo, correo, telefono, direccion from usuario u where u.usuario='".$usuario."' and u.contrasenya='".md5($clave)."'";
+			$query = "select nombres, apellidos, cedula, sexo, correo, telefono, direccion from usuario u where u.usuario='".$usuario."' and u.contrasenya='".($clave)."'";
 
 			$result = controlador::get_result($query);
 			$row = $result->fetch_assoc();
@@ -81,7 +81,7 @@
 
 		static function get_id_usuario($usuario,$clave)
 		{
-			$query = "select id_usuario from usuario u where u.usuario='".$usuario."' and u.contrasenya='".md5($clave)."'";
+			$query = "select id_usuario from usuario u where u.usuario='".$usuario."' and u.contrasenya='".($clave)."'";
 
 			$result = controlador::get_result($query);
 			$row = $result->fetch_assoc();
@@ -92,7 +92,7 @@
 		static function insertar_usuario($us)
 		{
 			$query = "insert into usuario(nombres,apellidos,cedula,sexo,telefono,correo,direccion,usuario,contrasenya,admin)
-			values('".$us->getNombres()."','".$us->getApellidos()."','".$us->getCedula()."','".$us->getSexo()."','".$us->getTelefono()."','".$us->getCorreo()."','".$us->getDireccion()."','".$us->getUsuario()."','".md5($us->getContrasenya())."','".$us->getAdmin()."')";
+			values('".$us->getNombres()."','".$us->getApellidos()."','".$us->getCedula()."','".$us->getSexo()."','".$us->getTelefono()."','".$us->getCorreo()."','".$us->getDireccion()."','".$us->getUsuario()."','".($us->getContrasenya())."','".$us->getAdmin()."')";
 
 			$result = controlador::get_result($query);	
 
