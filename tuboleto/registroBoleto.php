@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+﻿<!DOCTYPE html>
+
+<html lang="es">
+<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css\estilo.css">
+
 	<title>Registrar Boleto</title>
 </head>
 

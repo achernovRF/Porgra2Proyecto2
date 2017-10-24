@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tu boleto</title>
+﻿<!DOCTYPE html>
+
+<html lang="es">
+<meta charset="utf-8">
+	<title>Inicio de Sesión</title>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>
 
