@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
-
-<html lang="es">
-<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css\estilo.css">
-
+<?php
+include "controlador.php";
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<title>Registrar Boleto</title>
 </head>
 
@@ -11,30 +13,74 @@
 
 <body>
 
+
+<?php
+
+$evs = controlador::get_eventos();
+$ids = controlador::get_ids_eventos(); 
+
+if(isset($_POST['enviar']))
+{
+	$serial = trim($_POST['serial']);
+	$id_evento = trim($_POST['id_evento']);
+	$ubicacion = trim($_POST['ubicacion']);
+		
+	if($serial!="" && $id_evento!="")
+	{
+		$bt = new boletos();
+
+		$bt->setId_usuario(controlador::get_id_usuario($_SESSION['us']->getUsuario(),$_SESSION['us']->getContrasenya()));
+		$bt->setId_evento($id_evento);
+		$bt->setUbicacion($ubicacion);
+		$bt->setSerial($serial);
+
+		$result = controlador::insertar_boleto($bt);
+
+		header("location:menu1.php?boleto=".$result);
+	}
+	else
+	{
+		echo '<script>alert("Los datos no pueden ser vacios.")</script>';	
+	}
+}
+
+?>
+
+	<a class="button" href="javascript:regresar1()" style="float: left;">Ir al Menu</a>
 	<h1>Registrar Boleto</h1>
-	<form action ="controlador.php" method="post">
+	<form action ="registroBoleto.php" method="post">
 	<div id ="form-registro">
 		
 		<!-- una fila por cada campo -->
 		<div class="fila">
 			<span>Serial</span>
-			<input type="text" name="serial"/>
+			<input type="number" name="serial"/>
 		</div>
 
 
 		<div class="fila">
 			<span>Evento</span>
-			<input type="text" name="evento"/>
+			<select name="id_evento" onchange="cambiar_fecha(this)">
+				<option value=""></option>
+				<?php
+
+					for($i=0;$i<count($evs);$i++)
+					{
+						echo '<option value="'.$ids[$i].'">'.$evs[$i]->getNombre().'</option>';
+					}
+
+				?>
+			</select>	
 		</div>
 
 		<div class="fila">
 			<span>Fecha</span>
-			<input type="date" name="fecha"/>
+			<input type="date" name="fecha" id="fecha" readonly="readonly" disabled="disabled" />
 		</div>
 
 		<div class="fila">
 			<span>Ubicación</span>
-			<select>
+			<select name="ubicacion">
 				<option value="medios">Medios</option>
 				<option value="altos">Altos</option>
 				<option value="vip">VIP</option>
@@ -47,11 +93,19 @@
 		<!-- una fila extra para los botones -->
 		<div class="fila">
 			<input type="submit" name="enviar" value="Enviar"/>
-			<input type="button" name="cancelar" value="Cancelar" />
+			<a class="button" href="javascript:cancelar1()">Cancelar</a>
 
-
-			<input type="hidden" name="operacion" value="">	
 		</div>
+
+
+		<input type="hidden" id="fecha0" value="" />
+		<?php
+			for($i=0;$i<count($evs);$i++)
+			{
+				echo '<input type="hidden" id="fecha'.($i+1).'" value="'.$evs[$i]->getFecha().'" />';
+			}
+
+		?>
 
 	</div>
 	</form>

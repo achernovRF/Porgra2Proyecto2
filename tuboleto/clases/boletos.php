@@ -1,10 +1,10 @@
 <?php
  class boletos
 {
-	public $serial;
-	public $id_usuario;
-	public $id_evento;
-	public $ubicacion;
+	private $serial;
+	private $id_usuario;
+	private $id_evento;
+	private $ubicacion;
 
 	public function construct_boletos($serial,$id_usuario,$id_evento,$ubicacion)
 	{

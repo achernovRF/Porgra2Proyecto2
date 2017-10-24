@@ -1,12 +1,12 @@
 <?php
  class eventos
 {
-	public $nombre;
-	public $medios;
-	public $altos;
-	public $vip;
-	public $platino;
-	public $fecha;
+	private $nombre;
+	private $medios;
+	private $altos;
+	private $vip;
+	private $platino;
+	private $fecha;
 
 	public function construct_eventos($nombre,$medios,$altos,$vip,$platino,$fecha)
 	{

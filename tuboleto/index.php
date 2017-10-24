@@ -1,15 +1,21 @@
-﻿<!DOCTYPE html>
-
-<html lang="es">
-<meta charset="utf-8">
-	<title>Inicio de Sesión</title>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tu boleto</title>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	
 </head>
+
+<script type="text/javascript" src="js/file.js"></script>
 
 <?php
 
 include "controlador.php";
 
+	if(isset($_SESSION))
+	{
+		session_destroy();
+	}
 
 	if(isset($_POST["login"]))
 	{
@@ -18,13 +24,25 @@ include "controlador.php";
 
 		if($usuario!="" && $clave!="")
 		{
-			if(controlador::login($usuario,$clave))
+			$cod = controlador::login($usuario,$clave);
+			if($cod>=0)
 			{
-				echo '<script>alert("Conecto!!!")</script>';
+				session_start();
+
+				$_SESSION["us"] = controlador::get_usuario($usuario,$clave);
+
+				if($cod==0)
+				{
+					header("location:menu1.php");	
+				}
+				else
+				{
+					header("location:menu2.php");	
+				}
 			}
 			else
 			{
-				echo '<script>alert("Error!!!")</script>';
+				echo '<script>alert("Usuario o contraseña incorrecta.")</script>';
 			}
 
 		}
@@ -34,9 +52,21 @@ include "controlador.php";
 		}	
 	}
 
+	if(isset($_GET["registro"]))
+	{
+		$registro = $_GET["registro"];
+		if($registro)
+		{
+			echo '<script>alert("Usuario registrado.")</script>';
+		}
+		else
+		{
+			echo '<script>alert("Error al registrar usuario.")</script>';
+		}
+	}
+
 ?>
 
-<script type="text/javascript" src="js/file.js"></script>
 
 <body>
 
@@ -53,7 +83,7 @@ include "controlador.php";
 		</div>
 		<div class="fila">
 			<input type="submit" name="login" value="Iniciar Sesión"/>
-			<input type="button" value="Registrarse" />
+			<a class="button" href="javascript:registrar()">Registrarse</a>
 		</div>
 
 	</div>

@@ -3,16 +3,16 @@
 class usuarios
 {
  
- public $nombres;
- public $apellidos;
- public $cedula;
- public $direccion;
- public $sexo;
- public $telefono;
- public $correo;
- public $usuario;
- public $contrasenya;
- public $admin;
+ private $nombres;
+ private $apellidos;
+ private $cedula;
+ private $direccion;
+ private $sexo;
+ private $telefono;
+ private $correo;
+ private $usuario;
+ private $contrasenya;
+ private $admin;
 
  public function construct_usuarios($nombres,$apellidos,$cedula,$dirrecion,$sexo,$telefono,$correo,$usuario,$contrasenya,$admin)
  {
@@ -68,7 +68,7 @@ class usuarios
     {
     	return $this->sexo;
     }
-    public function setSexo()
+    public function setSexo($sexo)
     {
     	$this->sexo=$sexo;
     }
